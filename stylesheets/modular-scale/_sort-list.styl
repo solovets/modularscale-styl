@@ -1,0 +1,84 @@
+// List sorting via a modified merge-sort algorythmn
+// http://en.wikipedia.org/wiki/Merge_sort
+
+ms-run-through-remainder($array, $counter, $return)
+    if $counter <= length($array)
+        $current = $array[$counter]
+
+        if $current != $return[length($return)]
+            $return = push($return, $current)
+        $counter += 1
+        ms-run-through-remainder($array, $counter, $return)
+    else
+        return $return
+
+ms-merge($A, $B)
+
+    $Return = ()
+
+    // Some empty lists get passed through
+    // so just pass the other list throguh
+    if length($A) == 0
+        return $B
+
+    // If lists fit next to each other, just merge them
+    // This helps performance skipping the need to check each value
+    if $A[length($A)] < $B[0]
+        return push($A, $B)
+
+    if $B[length($B)] < $A[0]
+        return push($B, $A)
+
+    // Counters start at 1
+    $A-counter = 1
+    $B-counter = 1
+
+    // Start looping through all numbers in array
+    ms-loop-through($a-array, $b-array, $a-counter, $b-counter, $return)
+        if $a-counter <= length($a-array) and $b-counter <= length($b-array)
+            // Check if the A value is smaller
+            // Uses or equal to avoid duplicate numbers
+            if $a-array[$a-counter] <= $b-array[$b-counter]
+                $return = push($return, $a-array[$a-counter])
+                $a-counter += 1
+
+                // Check if the B value is smaller
+            else if $a-array[$a-counter] > $b-array[$b-counter]
+                $return = push($return, $b-array[$b-counter])
+                $b-counter += 1
+        else
+            return $return
+
+    $Return = ms-loop-through($A, $B, $A-counter, $B-counter, $Return)
+
+    // Run through remainder values in the list
+    $Return = run-through-remainder($A, $A-counter, $Return)
+
+    $Return = run-through-remainder($B, $B-counter, $Return)
+
+    // Done! return is now sorted and complete
+    return $Return
+
+// Pull it all together
+ms-sort-list($Lists)
+
+    $Return = ()
+
+    for $List in $Lists
+        if $Return == ()
+            $Return = $List
+        else
+            $Return = ms-merge($List, $Return)
+
+    // final cleanup of repeated items
+    $Last = null
+    $New-list = ()
+
+    for $Item in $Return
+        if $Item != $Last
+            $New-list = push($New-list, $Item)
+
+        $Last = $Item
+
+    $Return = $New-list
+    return $Return
