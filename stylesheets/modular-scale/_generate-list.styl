@@ -18,7 +18,7 @@ ms-pseudo-while($counter, $a, $op, $b, $array, $additional-condition, $condition
         else
             $array = push($array, $MS-calc)
         $counter = $counter + $counter
-        ms-pseudo-while($counter, $a, $op, $b, $array)
+        ms-pseudo-while($counter, $a, $op, $b, $array, $additional-condition, $condition)
     else
         return $array
 
@@ -44,25 +44,25 @@ ms-generate-list($Value = 0, $Bases = $ms-base, $Ratios = $ms-ratio)
             if $Value >= 0
 
                 // Find lower values on the scale
-                $MS-base-list = ms-pseudo-while(-1, ($Base, $Ratio), '>=', $Bases[0], $MS-base-list, false)
+                $MS-base-list = ms-pseudo-while(-1, ($Base $Ratio), '>=', $Bases[0], $MS-base-list, false, null)
 
                 // Ensure the list is smallest to largest
                 $MS-base-list = ms-reverse-list($MS-base-list)
 
                 // Find higher possible values on the scale
-                $MS-base-list = ms-pseudo-while(1, ($Base, $Ratio), '<=', ms-calc($Value, $Bases[0], $Ratio), $MS-base-list, false)
+                $MS-base-list = ms-pseudo-while(1, ($Base $Ratio), '<=', ms-calc($Value, $Bases[0], $Ratio), $MS-base-list, false, null)
 
             // Find values on a negitive scale
             else
 
                 // Find lower values on the scale
-                $MS-base-list = ms-pseudo-while(1, ($Base, $Ratio), '<=', $Bases[0], $MS-base-list, false)
+                $MS-base-list = ms-pseudo-while(1, ($Base $Ratio), '<=', $Bases[0], $MS-base-list, false, null)
 
                 // Ensure the list is smallest to largest
                 $MS-base-list = ms-reverse-list($MS-base-list)
 
                 // Find higher possible values on the scale
-                $MS-base-list = ms-pseudo-while(-1, ($Base, $Ratio), '>=', ms-calc($Value, $Bases[0], $Ratio), $MS-base-list, true, $Bases[0])
+                $MS-base-list = ms-pseudo-while(-1, ($Base $Ratio), '>=', ms-calc($Value, $Bases[0], $Ratio), $MS-base-list, true, $Bases[0])
 
                 // Trim outlier base.
                 if length($Bases) > 1

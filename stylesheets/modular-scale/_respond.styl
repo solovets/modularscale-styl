@@ -17,7 +17,7 @@ ms-range($x, $y, $range = $ms-range)
         $diff = ms-unitless($val2) - ms-unitless($val1)
 
         if $ms-fluid
-            return calc( {$val1} + {$diff} * ( ( 100vw - {$break1}) / {ms-unitless($break2) - ms-unitless($break1)} ) )
+            return calc( $val1 + $diff * ( ( 100vw - $break1) / ms-unitless($break2) - ms-unitless($break1) ) )
         else
             return ms($value, $base, ms-range($n, 1, $range))
 

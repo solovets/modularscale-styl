@@ -51,15 +51,15 @@ ms-list($Start = 0, $End = 0, $Bases = $ms-base, $Ratios = $ms-ratio)
         $Trim-list = ()
         if $End < 0
             for $i in abs($End)..abs($Start)+2
-$Trim-list = push($Negitive-return[$i], $Trim-list);
-else
-for $i in 2..abs($Start)+1
-    $Trim-list = push($Negitive-return[$i], $Trim-list);
+                $Trim-list = push($Negitive-return[$i], $Trim-list);
+    else
+        for $i in 2..abs($Start)+1
+            $Trim-list = push($Negitive-return[$i], $Trim-list);
 
 
-$Negitive-return = $Trim-list
+    $Negitive-return = $Trim-list
 
-// Join both positive and negitive possibilities.
-$Return = push($Negitive-return, $Positive-return);
+    // Join both positive and negitive possibilities.
+    $Return = push($Negitive-return, $Positive-return)
 
-return $Return
+    return $Return
