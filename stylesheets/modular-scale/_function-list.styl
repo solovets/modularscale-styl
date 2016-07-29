@@ -21,11 +21,11 @@ ms-list($Start = 0, $End = 0, $Bases = $ms-base, $Ratios = $ms-ratio)
         // trim the positive return from that
         if $Start >= 0
             for $i in $Start+1..$End+1
-                $Trim-list = push($Trim-list, $Positive-return[$i])
+                push($Trim-list, $Positive-return[$i])
 
         else
             for $i in 1..($End+1)
-                $Trim-list = push($Trim-list, $Positive-return[$i])
+                push($Trim-list, $Positive-return[$i])
 
         $Positive-return = $Trim-list
 
@@ -43,7 +43,7 @@ ms-list($Start = 0, $End = 0, $Bases = $ms-base, $Ratios = $ms-ratio)
         $MS-new-return = ()
 
         for $i in $Negitive-return
-            $MS-new-return = push($i, $MS-new-return)
+            unshift($MS-new-return, $i)
 
         $Negitive-return = $MS-new-return
 
@@ -51,15 +51,16 @@ ms-list($Start = 0, $End = 0, $Bases = $ms-base, $Ratios = $ms-ratio)
         $Trim-list = ()
         if $End < 0
             for $i in abs($End)..abs($Start)+2
-                $Trim-list = push($Negitive-return[$i], $Trim-list);
+                unshift($Trim-list, $Negitive-return[$i]);
     else
         for $i in 2..abs($Start)+1
-            $Trim-list = push($Negitive-return[$i], $Trim-list);
+            unshift($Trim-list, $Negitive-return[$i]);
 
 
     $Negitive-return = $Trim-list
 
     // Join both positive and negitive possibilities.
-    $Return = push($Negitive-return, $Positive-return)
+    push($Negitive-return, $Positive-return)
+    $Return = $Negitive-return
 
     return $Return

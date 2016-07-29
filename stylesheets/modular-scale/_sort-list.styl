@@ -2,11 +2,11 @@
 // http://en.wikipedia.org/wiki/Merge_sort
 
 ms-run-through-remainder($array, $counter, $return)
-    if $counter <= length($array)
+    if $counter < length($array)
         $current = $array[$counter]
 
-        if $current != $return[length($return)]
-            $return = push($return, $current)
+        if $current != $return[-1]
+            push($return, $current)
         $counter += 1
         ms-run-through-remainder($array, $counter, $return)
     else
@@ -23,38 +23,42 @@ ms-merge($A, $B)
 
     // If lists fit next to each other, just merge them
     // This helps performance skipping the need to check each value
-    if $A[length($A)] < $B[0]
-        return push($A, $B)
+    if $A[-1] < $B[0]
+        push($A, $B)
+        return $A
 
-    if $B[length($B)] < $A[0]
-        return push($B, $A)
+    if $B[-1] < $A[0]
+        push($B, $A)
+        return $B
 
     // Counters start at 1
-    $A-counter = 1
-    $B-counter = 1
+    $A-counter = 0
+    $B-counter = 0
 
     // Start looping through all numbers in array
     ms-loop-through($a-array, $b-array, $a-counter, $b-counter, $return)
-        if $a-counter <= length($a-array) and $b-counter <= length($b-array)
+        if $a-counter < length($a-array) and $b-counter < length($b-array)
             // Check if the A value is smaller
             // Uses or equal to avoid duplicate numbers
             if $a-array[$a-counter] <= $b-array[$b-counter]
-                $return = push($return, $a-array[$a-counter])
+                push($return, $a-array[$a-counter])
                 $a-counter += 1
 
                 // Check if the B value is smaller
             else if $a-array[$a-counter] > $b-array[$b-counter]
-                $return = push($return, $b-array[$b-counter])
+                push($return, $b-array[$b-counter])
                 $b-counter += 1
+
+            ms-loop-through($a-array, $b-array, $a-counter, $b-counter, $return)
         else
             return $return
 
     $Return = ms-loop-through($A, $B, $A-counter, $B-counter, $Return)
 
     // Run through remainder values in the list
-    $Return = run-through-remainder($A, $A-counter, $Return)
+    $Return = ms-run-through-remainder($A, $A-counter, $Return)
 
-    $Return = run-through-remainder($B, $B-counter, $Return)
+    $Return = ms-run-through-remainder($B, $B-counter, $Return)
 
     // Done! return is now sorted and complete
     return $Return
@@ -63,6 +67,7 @@ ms-merge($A, $B)
 ms-sort-list($Lists)
 
     $Return = ()
+
 
     for $List in $Lists
         if $Return == ()
@@ -76,7 +81,7 @@ ms-sort-list($Lists)
 
     for $Item in $Return
         if $Item != $Last
-            $New-list = push($New-list, $Item)
+            push($New-list, $Item)
 
         $Last = $Item
 

@@ -1,23 +1,27 @@
 ms-reverse-list($list)
-
     if length($list) > 1
-        if $list[0] > $list[length($list)]
+
+        if $list[0] > $list[-1]
             $MS-reversed-list = ()
             for $Value in $list
-                $MS-reversed-list = push($Value, $MS-reversed-list)
+                unshift($MS-reversed-list, $Value)
             return $MS-reversed-list
     return $list
 
 ms-pseudo-while($counter, $a, $op, $b, $array, $additional-condition, $condition)
-    $MS-calc = ms-calc($counter, $a)
+    $MS-calc = ms-calc($counter, $a[0], $a[1])
     if operate($op, $MS-calc, $b)
         if $additional-condition
             // detect if the value excedes the main base value
             if $MS-calc < $condition
-                $array = push($array, $MS-calc)
+                push($array, $MS-calc)
         else
-            $array = push($array, $MS-calc)
-        $counter = $counter + $counter
+            push($array, $MS-calc)
+
+        if $counter > 0
+            $counter += 1
+        else
+            $counter -= 1
         ms-pseudo-while($counter, $a, $op, $b, $array, $additional-condition, $condition)
     else
         return $array
@@ -25,7 +29,9 @@ ms-pseudo-while($counter, $a, $op, $b, $array, $additional-condition, $condition
 ms-generate-list($Value = 0, $Bases = $ms-base, $Ratios = $ms-ratio)
 
     // Create blank lists
-    $MS-list = ()
+    // NB: List $MS-list is defined as a string
+    // https://github.com/stylus/stylus/issues/1066
+    $MS-list = ""
     $MS-base-list = ()
 
     // Loop through each ratio AND each base
@@ -38,7 +44,7 @@ ms-generate-list($Value = 0, $Bases = $ms-base, $Ratios = $ms-ratio)
             $Base-counter = 0
 
             // Seed list with an initial value
-            $MS-base-list = $Base
+            push($MS-base-list, $Base)
 
             // Find values on a positive scale
             if $Value >= 0
@@ -48,6 +54,7 @@ ms-generate-list($Value = 0, $Bases = $ms-base, $Ratios = $ms-ratio)
 
                 // Ensure the list is smallest to largest
                 $MS-base-list = ms-reverse-list($MS-base-list)
+
 
                 // Find higher possible values on the scale
                 $MS-base-list = ms-pseudo-while(1, ($Base $Ratio), '<=', ms-calc($Value, $Bases[0], $Ratio), $MS-base-list, false, null)
@@ -66,18 +73,23 @@ ms-generate-list($Value = 0, $Bases = $ms-base, $Ratios = $ms-ratio)
 
                 // Trim outlier base.
                 if length($Bases) > 1
-                    for $i in (2..length($Bases))
+                    for $i in 1..length($Bases) - 1
                         if $MS-base-list[0] > $Bases[0]
                             $MS-new-list = ()
-                            for $i in 2..length($MS-base-list)
-                                $MS-new-list = push($MS-new-list, $MS-base-list[$i])
+                            for $i in 1..length($MS-base-list) - 1
+                                push($MS-new-list, $MS-base-list[$i])
                             $MS-base-list = $MS-new-list
+                p($MS-base-list)
 
             // reverse list if its largest to smallest
             $MS-base-list = ms-reverse-list($MS-base-list)
 
             // Add new possibilities to the master list
-            $MS-list = append($MS-list, $MS-base-list)
+            append($MS-list, $MS-base-list)
 
     // After all the possibilities are found, output a master list
+
+    // NB: Remove empty string that was defined earlier from the list
+    // https://github.com/stylus/stylus/issues/1066
+    shift($MS-list)
     return $MS-list

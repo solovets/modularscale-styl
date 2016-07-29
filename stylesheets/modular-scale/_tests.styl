@@ -1,0 +1,7 @@
+if length($ms-base) > 1
+    if list-separator($ms-base) is not ','
+        error('You defined several values of $ms-base variable. You should use a comma as a separator for these values.')
+
+if length($ms-ratio) > 1
+    if list-separator($ms-ratio) is not ','
+        error('You defined several values of $ms-ratio variable. You should use a comma as a separator for these values.')
