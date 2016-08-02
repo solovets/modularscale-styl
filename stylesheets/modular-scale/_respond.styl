@@ -16,11 +16,11 @@ ms-respond-calc($value, $n, $range = $ms-range, $base = $ms-base)
     $break2 = ms-range($n + 1, 1, $range)
     $diff = ms-unitless($val2) - ms-unitless($val1)
 
-    if $ms-fluid {
-        return calc( $val1 + $diff * ( ( 100vw - $break1) / ms-unitless($break2) - ms-unitless($break1) ) )
-    } else {
+    if $ms-fluid
+        $Return = unquote('calc(') $val1 \+ $diff \* unquote('((') 100vw \- $break1 unquote(')') \/ ms-unitless($break2) - ms-unitless($break1) unquote('))');
+        return $Return
+    else
         return ms($value, $base, ms-range($n, 0, $range))
-    }
 
 
 
