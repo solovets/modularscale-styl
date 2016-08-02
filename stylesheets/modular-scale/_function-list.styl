@@ -20,11 +20,11 @@ ms-list($Start = 0, $End = 0, $Bases = $ms-base, $Ratios = $ms-ratio)
         // If the starting value is a positive number
         // trim the positive return from that
         if $Start >= 0
-            for $i in $Start+1..$End+1
+            for $i in $Start..$End
                 push($Trim-list, $Positive-return[$i])
 
         else
-            for $i in 1..($End+1)
+            for $i in 0..$End
                 push($Trim-list, $Positive-return[$i])
 
         $Positive-return = $Trim-list
@@ -50,14 +50,13 @@ ms-list($Start = 0, $End = 0, $Bases = $ms-base, $Ratios = $ms-ratio)
         // Trim list
         $Trim-list = ()
         if $End < 0
-            for $i in abs($End)..abs($Start)+2
-                unshift($Trim-list, $Negitive-return[$i]);
-    else
-        for $i in 2..abs($Start)+1
-            unshift($Trim-list, $Negitive-return[$i]);
+            for $i in range((abs($End) - 1), (abs($Start) + 1))
+                unshift($Trim-list, $Negitive-return[$i])
+        else
+            for $i in 1..abs($Start)
+                unshift($Trim-list, $Negitive-return[$i])
 
-
-    $Negitive-return = $Trim-list
+        $Negitive-return = $Trim-list
 
     // Join both positive and negitive possibilities.
     push($Negitive-return, $Positive-return)

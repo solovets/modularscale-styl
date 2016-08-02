@@ -16,7 +16,7 @@ ms($Value = 0, $Bases = $ms-base, $Ratios = $ms-ratio)
     if $Value < 0
         $MS-new-return = ()
         for $i in $Return
-            push($MS-new-return, $i)
+            unshift($MS-new-return, $i)
 
         $Return = $MS-new-return
 

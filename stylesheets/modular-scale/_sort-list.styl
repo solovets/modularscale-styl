@@ -36,24 +36,25 @@ ms-merge($A, $B)
     $B-counter = 0
 
     // Start looping through all numbers in array
-    ms-loop-through($a-array, $b-array, $a-counter, $b-counter, $return)
-        if $a-counter < length($a-array) and $b-counter < length($b-array)
+    ms-loop-through($a-array, $b-array, $return)
+
+        if $A-counter < length($a-array) and $B-counter < length($b-array)
             // Check if the A value is smaller
             // Uses or equal to avoid duplicate numbers
-            if $a-array[$a-counter] <= $b-array[$b-counter]
-                push($return, $a-array[$a-counter])
-                $a-counter += 1
+            if $a-array[$A-counter] <= $b-array[$B-counter]
+                push($return, $a-array[$A-counter])
+                $A-counter[0] = $A-counter[0] + 1
 
-                // Check if the B value is smaller
-            else if $a-array[$a-counter] > $b-array[$b-counter]
-                push($return, $b-array[$b-counter])
-                $b-counter += 1
+            // Check if the B value is smaller
+            else if $a-array[$A-counter] > $b-array[$B-counter]
+                push($return, $b-array[$B-counter])
+                $B-counter[0] = $B-counter[0] + 1
 
-            ms-loop-through($a-array, $b-array, $a-counter, $b-counter, $return)
+            ms-loop-through($a-array, $b-array, $return)
         else
             return $return
 
-    $Return = ms-loop-through($A, $B, $A-counter, $B-counter, $Return)
+    $Return = ms-loop-through($A, $B, $Return)
 
     // Run through remainder values in the list
     $Return = ms-run-through-remainder($A, $A-counter, $Return)
@@ -65,7 +66,6 @@ ms-merge($A, $B)
 
 // Pull it all together
 ms-sort-list($Lists)
-
     $Return = ()
 
 
