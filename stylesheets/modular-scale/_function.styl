@@ -3,7 +3,7 @@ ms($Value = 0, $Bases = $ms-base, $Ratios = $ms-ratio)
 
     // If no multi-base or multi-ratio stuff is going on
     // then just retrn the basic calculaiton
-    if length($Bases) == 1 and length($Ratios) == 1
+    if length($Bases) is 1 and length($Ratios) is 1
         return ms-round-px(ms-calc($Value, $Bases, $Ratios))
 
     // Generate a list of all possible values
@@ -20,10 +20,6 @@ ms($Value = 0, $Bases = $ms-base, $Ratios = $ms-ratio)
 
         $Return = $MS-new-return
 
-    // Normalize value for counting from 1
-    // Because CSS counts things from 1
-    // So Sass does as well
-    // So I get to write fun stuff like this
     $Value = abs($Value)
 
     // Find the correct value in the list

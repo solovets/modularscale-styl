@@ -122,13 +122,15 @@ $ms-ratio = $my-ratio;
 
 ## Original SASS plugin
 
-The [original version](https://github.com/modularscale/modularscale-sass) of this plugin was written in SASS. If you have any comments or suggestions of impovements you can use [issue tracker of modularscale-sass repo](https://github.com/modularscale/modularscale-sass/issues).
+The [original version](https://github.com/modularscale/modularscale-sass) of this plugin was written in [SASS](http://sass-lang.com). If you have any comments or suggestions of impovements you can use [issue tracker of modularscale-sass repo](https://github.com/modularscale/modularscale-sass/issues).
 
 ## License
 
 The MIT License (MIT)
 
 Copyright © 2015 [Scott Kellum](http://www.scottkellum.com/) ([@scottkellum](http://twitter.com/scottkellum)), [Adam Stacoviak](http://adamstacoviak.com/) ([@adamstac](http://twitter.com/adamstac)) and [Mason Wendell](http://thecodingdesigner.com/) ([@codingdesigner](http://twitter.com/codingdesigner))
+
+Version in [Stylus](https://github.com/stylus/stylus) syntax was implemented by [Denis Solovets](https://github.com/solovets)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

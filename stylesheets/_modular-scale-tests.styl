@@ -1,0 +1,61 @@
+if substr('' + ms(2, 16, $minor-sixth), 0, 5) is not '40.96'
+    warn("function ms(): FAIL!")
+    p("function ms(2, 16, $minor-sixth)")
+    p("Result:" substr('' + ms(2, 16, $minor-sixth), 0, 5))
+    p("Intended: 40.96")
+else
+    p("function ms(+): pass")
+
+
+if substr('' + ms(-2, 16, $minor-sixth), 0, 5) is not '6.249'
+    warn("function ms(): FAIL!")
+    p("function ms(-2, 16, $minor-sixth)")
+    p("Result:" ms(-2, 16, $minor-sixth))
+    p("Intended: 6.249 (or 6.249(9))")
+else
+    p("function ms(-): pass")
+
+
+if ms(2, 14 18, $major-second) is not 15.75
+    warn("function ms() multi-base: FAIL!")
+    p("function ms(2, 14 18, $major-second)")
+    p("Result:" ms(2, 14 18, $major-second))
+    p("Intended: 15.75")
+else
+    p("function ms(+) multi-base: pass")
+
+
+if ms(-1, 14 18, $major-third) is not 11.52
+    warn("function ms() multi-base: FAIL!")
+    p("function ms(-1, 14 18, $major-third)")
+    p("Result:" ms(-1, 14 18, $major-third))
+    p("Intended: 11.52")
+else
+    p("function ms(-) multi-base: pass")
+
+
+if ms(-4, 12, $major-tenth $octave) is not 1.92
+    warn("function ms() multi-ratio: FAIL!")
+    p("function ms(-4, 12, $major-tenth $octave)")
+    p("Result:" ms(-4, 12, $major-tenth $octave))
+    p("Intended: 1.92")
+else
+    p("function ms(+) multi-ratio: pass")
+
+
+if ms(-4, 12, $major-tenth $octave) != 1.92
+    warn("function ms() multi-ratio: FAIL!")
+    p("function ms(-4, 12, $major-tenth $octave)")
+    p("Result:" ms(-4, 12, $major-tenth $octave))
+    p("Intended: 1.92")
+else
+    p("function ms(-) multi-ratio: pass")
+
+
+if "" + ms-list(-3, 3, 10 16, $major-third) != "6.5536 8 8.192 10 10.24 12.5 12.8"
+    warn("function ms-list(): FAIL!")
+    p("function ms-list(-3, 3, 10 16, $major-third)")
+    p("Result:" + ms-list(-3, 3, 10 16, $major-third))
+    p("Intended: (6.5536 8 8.192 10 10.24 12.5 12.8)")
+else
+    p("function ms-list(): pass")
