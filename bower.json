@@ -1,0 +1,31 @@
+{
+  "name": "modularscale-styl",
+  "homepage": "https://github.com/solovets/modularscale-styl",
+  "authors": [
+    "Denis Solovets"
+  ],
+  "description": "Modular scale calculator built into your Stylus CSS preprocessor",
+  "main": "stylesheets/_modular-scale-tests.styl",
+  "keywords": [
+    "css",
+    "stylus",
+    "modular scale",
+    "typography",
+    "typo",
+    "preprocessor",
+    "golden ratio",
+    "markup",
+    "styles"
+  ],
+  "license": "MIT",
+  "ignore": [
+    ".gitignore",
+    "node_modules",
+    "bower_components",
+    "bower.json",
+    "LICENSE",
+    "README.md",
+    "test",
+    "tests"
+  ]
+}
