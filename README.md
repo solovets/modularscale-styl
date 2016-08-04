@@ -7,6 +7,24 @@ Ems work especially well with modular scales as their recursive properties mimic
 
 To get started, you need to select a ratio and a base value. The base value is usually your text font size or 1em. Optionally you can add another value to create a double standard modular scale which might be useful to create more options for in-between values. This base size paired with a ratio such as the golden ratio or any musical proportion will create your scale of values which all share this proportion.
 
+## Install
+
+### NPM
+
+* Terminal: `npm install modularscale-styl --save-dev`  
+* Stylus: `@import '../node_modules/modularscale-styl/stylesheets/_modular-scale.styl';`
+
+### Bower
+
+* Terminal: `bower install modularscale-styl --save-dev`  
+* Stylus: `@import '../link_to_component_dir/modular-scale/stylesheets/_modular-scale.styl';`
+
+### Vanilla
+
+* [Download the latest zip](https://github.com/solovets/modularscale-styl/releases/latest)
+* Extract into your project
+* Stylus: `@import '_modular-scale.styl';`
+
 ## Usage
 
 Modular Scale has two default variables that you should place with your other site wide variables. `$ms-base` is usually your font size or `1em` and can have multiple values. `$ms-ratio` is the factor of change between each number so if the ratio is `1.5` then each number in the sequence will be 1.5 times that of the previous number. Just as you can have multiple bases you can have multiple ratios.
