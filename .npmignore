@@ -1,0 +1,9 @@
+.idea/
+.gitignore
+node_modules/
+bower_components/
+bower.json
+LICENSE
+README.md
+test/
+tests/
