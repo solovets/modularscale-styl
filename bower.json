@@ -21,9 +21,10 @@
   "license": "MIT",
   "ignore": [
     ".gitignore",
+    ".npmignore",
     "node_modules",
+    "package.json",
     "bower_components",
-    "bower.json",
     "LICENSE",
     "README.md",
     "test",
