@@ -1,6 +1,6 @@
 {
   "name": "modularscale-styl",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Modular scale calculator built into your Stylus CSS preprocessor",
   "main": "stylesheets/_modular-scale.styl",
   "directories": {
